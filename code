@@ -1,0 +1,72 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int x[1000001], y[1000001], z[1000001], i, j, k, n, m;
+
+int main()
+{
+    ifstream fin("interclasare1.in");
+    ofstream fout("interclasare1.out");
+    
+    fin >> n;
+    
+    for(i = 1; i <= n; i ++)
+    {
+        fin >> x[i];
+    }
+    
+    fin >> m;
+    
+    for(i = 1; i <= m; i ++)
+    {
+        fin >> y[i];
+    }
+    
+    for(i = 1, j = 1; i <= m and j <= n;)
+    {
+        if(y[i] < x[j])
+        {
+            k ++;
+            z[k] = y[i];
+            i ++;
+        }
+        else if(x[j] < y[i])
+        {
+            k ++;
+            z[k] = x[j];
+            j ++;
+        }
+        else
+        {
+            k ++;
+            z[k] = y[i];
+            i ++;
+            j ++;
+        }
+    }
+    
+    k ++;
+    
+    for(;j <= n; j ++, k ++)
+    {
+        z[k] = x[j];
+    }
+
+    for(;i <= m; i ++, k ++)
+    {
+        z[k] = y[i];
+    }
+    
+    for(i = 1; i < k; i ++)
+    {
+        fout << z[i] << " ";
+        
+        if(i % 10 == 0)
+        {
+            fout << '\n';
+        }
+    }
+    
+    return 0;
+}
